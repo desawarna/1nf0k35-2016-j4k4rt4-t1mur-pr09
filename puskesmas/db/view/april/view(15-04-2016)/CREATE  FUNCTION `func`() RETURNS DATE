@@ -1,0 +1,283 @@
+CREATE  FUNCTION `func`() RETURNS DATE
+RETURN @var$$
+
+CREATE  FUNCTION `tglrusak`() RETURNS DATE
+RETURN @tglrusak$$
+
+
+CREATE  FUNCTION tglkondisi() RETURNS DATE
+RETURN @tglkondisi
+
+public function detailbhpmusnaknan($kodeopname=0,$idbarang=0,$batch='')
+	{	
+		$data['action']			= "add";
+		$data['kode']			= $kodeopname;
+
+        $this->form_validation->set_rules('id_mst_inv_barang_habispakai_jenis', 'ID Barang', 'trim');
+        $this->form_validation->set_rules('id_inv_inventaris_habispakai_opname', 'Nama Barang', 'trim');
+        $this->form_validation->set_rules('batch', 'Batch', 'trim|required');
+        $this->form_validation->set_rules('uraian', 'Nama Barang', 'trim|required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah Awal', 'trim');
+        $this->form_validation->set_rules('harga', 'harga', 'trim');
+        $this->form_validation->set_rules('jumlahopname', 'Jumlah Opname', 'trim|required');
+
+		if($this->form_validation->run()== FALSE){
+
+			$data = $this->bhp_pemusnahan_model->get_data_detail_bhp($kodeopname,$idbarang,$batch); 
+			$data['action']			= "add";
+			$data['kode']			= $kodeopname;
+			$data['notice']			= validation_errors();
+			$kodepuskesmas = $this->session->userdata('puskesmas');
+			$this->db->where('code','P'.$kodepuskesmas);
+			$data['kodepuskesmas'] = $this->puskesmas_model->get_data();
+			die($this->parser->parse('inventory/bhp_pemusnahan/detail_form', $data));
+		}else{
+			if($simpan=$this->bhp_pemusnahan_model->insertdsata()){
+				$id=$this->input->post('id_mst_inv_barang');
+				die("OK|$id|Tersimpan");
+			}else{
+				$id=$this->input->post('id_mst_inv_barang');
+				 die("Error|$id|Proses data gagal");
+			}
+			
+		}
+	}
+
+	
+SELECT 
+IF((IFNULL(
+  (SELECT inv_inventaris_habispakai_opname.tgl_opname
+   FROM (inv_inventaris_habispakai_opname
+ LEFT JOIN inv_inventaris_habispakai_opname_item ON((inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname = inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname)))
+   WHERE ((inv_inventaris_habispakai_opname_item.batch = inv_inventaris_habispakai_pembelian_item.batch)
+  AND (inv_inventaris_habispakai_opname_item.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai))
+   ORDER BY inv_inventaris_habispakai_opname.tgl_opname DESC LIMIT 1),(CURDATE() + INTERVAL 1 DAY)) < CURDATE()),IFNULL(
+(SELECT inv_inventaris_habispakai_opname_item.harga
+ FROM (inv_inventaris_habispakai_opname
+   LEFT JOIN inv_inventaris_habispakai_opname_item ON((inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname = inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname)))
+ WHERE ((inv_inventaris_habispakai_opname_item.batch = inv_inventaris_habispakai_pembelian_item.batch)
+AND (inv_inventaris_habispakai_opname_item.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai))
+ ORDER BY inv_inventaris_habispakai_opname.tgl_opname DESC LIMIT 1),0),IFNULL(
+(SELECT m.harga
+ FROM (inv_inventaris_habispakai_pembelian s
+   LEFT JOIN inv_inventaris_habispakai_pembelian_item m ON((s.id_inv_hasbispakai_pembelian = m.id_inv_hasbispakai_pembelian)))
+ WHERE ((m.batch = inv_inventaris_habispakai_pembelian_item.batch)
+AND (m.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai))
+ ORDER BY m.tgl_update DESC LIMIT 1),0)) AS hargaterakhir
+, 
+IFNULL(((IFNULL((SELECT j.jml_akhir FROM inv_inventaris_habispakai_opname_item j JOIN inv_inventaris_habispakai_opname k
+ON j.id_inv_inventaris_habispakai_opname=k.id_inv_inventaris_habispakai_opname
+WHERE j.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+j.batch = inv_inventaris_habispakai_pembelian_item.batch ORDER BY k.tgl_opname DESC LIMIT 1
+),0))+(IFNULL((
+SELECT SUM(jml) FROM inv_inventaris_habispakai_distribusi_item JOIN inv_inventaris_habispakai_distribusi ON
+inv_inventaris_habispakai_distribusi.id_inv_inventaris_habispakai_distribusi = inv_inventaris_habispakai_distribusi_item.id_inv_inventaris_habispakai_distribusi
+WHERE inv_inventaris_habispakai_distribusi_item.batch = inv_inventaris_habispakai_pembelian_item.batch AND
+inv_inventaris_habispakai_distribusi_item.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai
+AND inv_inventaris_habispakai_distribusi.tgl_distribusi > (IFNULL((SELECT k.tgl_opname FROM inv_inventaris_habispakai_opname_item j JOIN inv_inventaris_habispakai_opname k
+ON j.id_inv_inventaris_habispakai_opname=k.id_inv_inventaris_habispakai_opname
+WHERE j.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+j.batch = inv_inventaris_habispakai_pembelian_item.batch ORDER BY k.tgl_opname DESC LIMIT 1
+),0))
+),0))),0) AS jml_awalopname,
+inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai,inv_inventaris_habispakai_pembelian_item.batch,inv_inventaris_habispakai_pembelian_item.harga,
+inv_inventaris_habispakai_pembelian_item.tgl_kadaluarsa, SUM(inv_inventaris_habispakai_pembelian_item.jml) AS total_penerimaan, mst_inv_pbf.nama,(SELECT g.tgl_pembelian FROM inv_inventaris_habispakai_pembelian g LEFT JOIN inv_inventaris_habispakai_pembelian_item h
+ON g.id_inv_hasbispakai_pembelian=h.id_inv_hasbispakai_pembelian WHERE
+h.batch =inv_inventaris_habispakai_pembelian_item.batch AND inv_inventaris_habispakai_pembelian.code_cl_phc = g.code_cl_phc 
+AND inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai = h.id_mst_inv_barang_habispakai
+ORDER BY g.tgl_pembelian DESC LIMIT 1
+) AS tgl_pembelian_terakhir,mst_inv_barang_habispakai.merek_tipe,mst_inv_barang_habispakai.uraian, 
+IFNULL((SUM(inv_inventaris_habispakai_pembelian_item.jml_rusak)),0) AS jml_rusak,
+IF((IFNULL((SELECT a.tgl_opname FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='terimarusak' ORDER BY a.tgl_opname DESC LIMIT 1),'0000-00-00') >=
+IFNULL((SELECT a.tgl_opname FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='retur' ORDER BY a.tgl_opname DESC LIMIT 1),'0000-00-00')),
+(IFNULL((IFNULL((SELECT SUM(c.jml_rusak) FROM inv_inventaris_habispakai_pembelian_item c JOIN inv_inventaris_habispakai_pembelian d
+ON c.id_inv_hasbispakai_pembelian=d.id_inv_hasbispakai_pembelian WHERE c.batch = inv_inventaris_habispakai_pembelian_item.batch
+AND c.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+d.code_cl_phc = inv_inventaris_habispakai_pembelian.code_cl_phc AND d.tgl_pembelian > 
+(IFNULL((SELECT a.tgl_opname FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='terimarusak' ORDER BY a.tgl_opname DESC LIMIT 1),'0000-00-00'))),0))+(IFNULL((SELECT b.jml_awal-b.jml_akhir FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='terimarusak' ORDER BY a.tgl_opname DESC LIMIT 1),0)),0)),
+((IFNULL((IFNULL((SELECT SUM(c.jml_rusak) FROM inv_inventaris_habispakai_pembelian_item c JOIN inv_inventaris_habispakai_pembelian d
+ON c.id_inv_hasbispakai_pembelian=d.id_inv_hasbispakai_pembelian WHERE c.batch = inv_inventaris_habispakai_pembelian_item.batch
+AND c.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+d.code_cl_phc = inv_inventaris_habispakai_pembelian.code_cl_phc AND d.tgl_pembelian > 
+(IFNULL((SELECT a.tgl_opname FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='retur' ORDER BY a.tgl_opname DESC LIMIT 1),'0000-00-00'))),0))+(IFNULL((SELECT b.jml_awal-b.jml_akhir FROM inv_inventaris_habispakai_opname a LEFT JOIN inv_inventaris_habispakai_opname_item b ON
+a.id_inv_inventaris_habispakai_opname = b.id_inv_inventaris_habispakai_opname WHERE
+b.id_mst_inv_barang_habispakai = inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai AND
+b.batch = inv_inventaris_habispakai_pembelian_item.batch AND a.code_cl_phc = inv_inventaris_habispakai_pembelian_item.code_cl_phc
+AND a.tipe='retur' ORDER BY a.tgl_opname DESC LIMIT 1),0)),0)))) AS jml_rusakakhir,
+inv_inventaris_habispakai_pembelian.*
+FROM inv_inventaris_habispakai_pembelian LEFT JOIN inv_inventaris_habispakai_pembelian_item ON 
+inv_inventaris_habispakai_pembelian.id_inv_hasbispakai_pembelian = inv_inventaris_habispakai_pembelian_item.id_inv_hasbispakai_pembelian
+JOIN mst_inv_barang_habispakai ON (inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai = mst_inv_barang_habispakai.id_mst_inv_barang_habispakai)
+JOIN mst_inv_pbf ON (mst_inv_pbf.code = inv_inventaris_habispakai_pembelian.mst_inv_pbf_code)
+WHERE inv_inventaris_habispakai_pembelian.pilihan_status_pembelian='2'
+GROUP BY inv_inventaris_habispakai_pembelian_item.id_mst_inv_barang_habispakai,inv_inventaris_habispakai_pembelian_item.batch,inv_inventaris_habispakai_pembelian.code_cl_phc
+
+
+SELECT `mst_inv_barang_habispakai`.
+`uraian`
+AS `uraian`, `mst_inv_barang_habispakai`.
+`merek_tipe`
+AS `merek_tipe`, (IFNULL((SELECT `inv_inventaris_habispakai_opname_item`.
+    `jml_akhir`
+    FROM(`inv_inventaris_habispakai_opname_item`
+        JOIN `inv_inventaris_habispakai_opname`
+        ON((`inv_inventaris_habispakai_opname`.
+            `id_inv_inventaris_habispakai_opname` = `inv_inventaris_habispakai_opname_item`.
+            `id_inv_inventaris_habispakai_opname`))) WHERE((`inv_inventaris_habispakai_opname_item`.
+        `batch` = `inv_inventaris_habispakai_pembelian_item`.
+        `batch`) AND(`inv_inventaris_habispakai_opname_item`.
+        `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+        `id_mst_inv_barang_habispakai`) AND(`inv_inventaris_habispakai_opname`.
+        `tipe` = 'terimarusak') AND(`inv_inventaris_habispakai_opname`.
+        `tgl_opname` < `tglrusak` ())) ORDER BY `inv_inventaris_habispakai_opname`.
+    `tgl_opname`
+    DESC LIMIT 1), 0) + (SELECT SUM(`a`.
+    `jml_rusak`) FROM(`inv_inventaris_habispakai_pembelian_item`
+    `a`
+    JOIN `inv_inventaris_habispakai_pembelian`
+    `b`
+    ON((`a`.
+        `id_inv_hasbispakai_pembelian` = `b`.
+        `id_inv_hasbispakai_pembelian`))) WHERE((`a`.
+    `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+    `id_mst_inv_barang_habispakai`) AND(`a`.
+    `batch` = `inv_inventaris_habispakai_pembelian_item`.
+    `batch`) AND(`a`.
+    `code_cl_phc` = `inv_inventaris_habispakai_pembelian_item`.
+    `code_cl_phc`) AND(`b`.
+    `tgl_pembelian` > IFNULL((SELECT `d`.
+        `tgl_opname`
+        FROM(`inv_inventaris_habispakai_opname_item`
+            `c`
+            JOIN `inv_inventaris_habispakai_opname`
+            `d`
+            ON((`c`.
+                `id_inv_inventaris_habispakai_opname` = `d`.
+                `id_inv_inventaris_habispakai_opname`))) WHERE((`c`.
+            `batch` = `inv_inventaris_habispakai_pembelian_item`.
+            `batch`) AND(`c`.
+            `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+            `id_mst_inv_barang_habispakai`) AND(`inv_inventaris_habispakai_pembelian`.
+            `code_cl_phc` = `d`.
+            `code_cl_phc`) AND(`d`.
+            `tipe` = 'terimarusak') AND(`d`.
+            `tgl_opname` < `tglrusak` ())) ORDER BY `d`.
+        `tgl_opname`
+        DESC LIMIT 1), '0000-00-00')) AND(`b`.
+    `tgl_pembelian` <= `tglrusak` ())))) AS `jumlahrusak`, SUM(`inv_inventaris_habispakai_pembelian_item`.
+    `jml_rusak`) AS `jml_rusak`, `inv_inventaris_habispakai_pembelian_item`.
+`id_mst_inv_barang_habispakai`
+AS `id_mst_inv_barang_habispakai`, `inv_inventaris_habispakai_pembelian_item`.
+`batch`
+AS `batch`, `inv_inventaris_habispakai_pembelian_item`.
+`tgl_kadaluarsa`
+AS `tgl_kadaluarsa`, `inv_inventaris_habispakai_pembelian`.
+`id_inv_hasbispakai_pembelian`
+AS `id_inv_hasbispakai_pembelian`, `inv_inventaris_habispakai_pembelian`.
+`id_mst_inv_barang_habispakai_jenis`
+AS `id_mst_inv_barang_habispakai_jenis`, `inv_inventaris_habispakai_pembelian`.
+`jenis_transaksi`
+AS `jenis_transaksi`, `inv_inventaris_habispakai_pembelian`.
+`mst_inv_pbf_code`
+AS `mst_inv_pbf_code`, `inv_inventaris_habispakai_pembelian`.
+`pilihan_status_pembelian`
+AS `pilihan_status_pembelian`, `inv_inventaris_habispakai_pembelian`.
+`pilihan_sumber_dana`
+AS `pilihan_sumber_dana`, `inv_inventaris_habispakai_pembelian`.
+`bln_periode`
+AS `bln_periode`, `inv_inventaris_habispakai_pembelian`.
+`thn_dana`
+AS `thn_dana`, `inv_inventaris_habispakai_pembelian`.
+`tgl_permohonan`
+AS `tgl_permohonan`, `inv_inventaris_habispakai_pembelian`.
+`tgl_pembelian`
+AS `tgl_pembelian`, `inv_inventaris_habispakai_pembelian`.
+`tgl_kwitansi`
+AS `tgl_kwitansi`, `inv_inventaris_habispakai_pembelian`.
+`nomor_kwitansi`
+AS `nomor_kwitansi`, `inv_inventaris_habispakai_pembelian`.
+`nomor_kontrak`
+AS `nomor_kontrak`, `inv_inventaris_habispakai_pembelian`.
+`jumlah_unit`
+AS `jumlah_unit`, `inv_inventaris_habispakai_pembelian`.
+`nilai_pembelian`
+AS `nilai_pembelian`, `inv_inventaris_habispakai_pembelian`.
+`keterangan`
+AS `keterangan`, `inv_inventaris_habispakai_pembelian`.
+`waktu_dibuat`
+AS `waktu_dibuat`, `inv_inventaris_habispakai_pembelian`.
+`terakhir_diubah`
+AS `terakhir_diubah`, `inv_inventaris_habispakai_pembelian`.
+`code_cl_phc`
+AS `code_cl_phc`, IF((IFNULL((SELECT `inv_inventaris_habispakai_opname`.
+    `tgl_opname`
+    FROM(`inv_inventaris_habispakai_opname`
+        LEFT JOIN `inv_inventaris_habispakai_opname_item`
+        ON((`inv_inventaris_habispakai_opname`.
+            `id_inv_inventaris_habispakai_opname` = `inv_inventaris_habispakai_opname_item`.
+            `id_inv_inventaris_habispakai_opname`))) WHERE((`inv_inventaris_habispakai_opname_item`.
+        `batch` = `inv_inventaris_habispakai_pembelian_item`.
+        `batch`) AND(`inv_inventaris_habispakai_opname_item`.
+        `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+        `id_mst_inv_barang_habispakai`)) ORDER BY `inv_inventaris_habispakai_opname`.
+    `tgl_opname`
+    DESC LIMIT 1), (CURDATE() + INTERVAL 1 DAY)) < CURDATE()), IFNULL((SELECT `inv_inventaris_habispakai_opname_item`.
+    `harga`
+    FROM(`inv_inventaris_habispakai_opname`
+        LEFT JOIN `inv_inventaris_habispakai_opname_item`
+        ON((`inv_inventaris_habispakai_opname`.
+            `id_inv_inventaris_habispakai_opname` = `inv_inventaris_habispakai_opname_item`.
+            `id_inv_inventaris_habispakai_opname`))) WHERE((`inv_inventaris_habispakai_opname_item`.
+        `batch` = `inv_inventaris_habispakai_pembelian_item`.
+        `batch`) AND(`inv_inventaris_habispakai_opname_item`.
+        `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+        `id_mst_inv_barang_habispakai`)) ORDER BY `inv_inventaris_habispakai_opname`.
+    `tgl_opname`
+    DESC LIMIT 1), 0), IFNULL((SELECT `inv_inventaris_habispakai_pembelian_item`.
+    `harga`
+    FROM(`inv_inventaris_habispakai_pembelian`
+        `h`
+        LEFT JOIN `inv_inventaris_habispakai_pembelian_item`
+        `i`
+        ON((`h`.
+            `id_inv_hasbispakai_pembelian` = `i`.
+            `id_inv_hasbispakai_pembelian`))) WHERE((`i`.
+        `batch` = `inv_inventaris_habispakai_pembelian_item`.
+        `batch`) AND(`i`.
+        `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+        `id_mst_inv_barang_habispakai`)) ORDER BY `i`.
+    `tgl_update`
+    DESC LIMIT 1), 0)) AS `hargaterakhir`
+FROM((`inv_inventaris_habispakai_pembelian_item`
+        JOIN `inv_inventaris_habispakai_pembelian`
+        ON((`inv_inventaris_habispakai_pembelian_item`.
+            `id_inv_hasbispakai_pembelian` = `inv_inventaris_habispakai_pembelian`.
+            `id_inv_hasbispakai_pembelian`))) JOIN `mst_inv_barang_habispakai`
+    ON((`mst_inv_barang_habispakai`.
+        `id_mst_inv_barang_habispakai` = `inv_inventaris_habispakai_pembelian_item`.
+        `id_mst_inv_barang_habispakai`))) WHERE(`inv_inventaris_habispakai_pembelian`.
+    `id_mst_inv_barang_habispakai_jenis` = '8') GROUP BY `inv_inventaris_habispakai_pembelian`.
+`code_cl_phc`, `inv_inventaris_habispakai_pembelian_item`.
+`id_mst_inv_barang_habispakai`, `inv_inventaris_habispakai_pembelian_item`.
+`batch`
+HAVING(`jumlahrusak` > 0)
