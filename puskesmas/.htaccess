@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 
 RewriteEngine on
-RewriteBase /infokes/mprogram_garut/
+RewriteBase /projek/epuskesmasjakarta/puskesmas/
 
 # Protect application and system files from being viewed when the index.php is missing
 RewriteCond $1 ^(application|system|private|logs)

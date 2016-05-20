@@ -46,8 +46,8 @@
     $(document).ready(function(){
       var theme = "orange";
 
-      $("input[name=kode]").val('3205');
-      $("input[name=kabupaten]").val('KABUPATEN GARUT');
+      $("input[name=kode]").val('3172');
+      $("input[name=kabupaten]").val('JAKARTA TIMUR');
       $("input[name=kabupaten]").attr('readonly','true');
       $("input[name=kabupaten]").css('background','#7ddb49');
 

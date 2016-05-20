@@ -50,11 +50,13 @@ class Pengadaanbarang extends CI_Controller {
 		}
 		if ($this->session->userdata('filter_code_cl_phc')!='' or empty($this->session->userdata('filter_code_cl_phc'))) {
 			if ($this->session->userdata('filter_code_cl_phc')=='all' || $this->session->userdata('filter_code_cl_phc')=='') {
-				# code...
+				$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
 				$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));	
 			}
 			
+		}else{
+			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all = $this->pengadaanbarang_model->get_data();
 
@@ -82,11 +84,13 @@ class Pengadaanbarang extends CI_Controller {
 		}
 		if ($this->session->userdata('filter_code_cl_phc')!='' or empty($this->session->userdata('filter_code_cl_phc'))) {
 			if ($this->session->userdata('filter_code_cl_phc')=='all' || $this->session->userdata('filter_code_cl_phc')=='') {
-				# code...
+				$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
 				$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));	
 			}
 			
+		}else{
+			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		//$rows = $this->pengadaanbarang_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));
 		$rows = $this->pengadaanbarang_model->get_data();
@@ -277,11 +281,13 @@ class Pengadaanbarang extends CI_Controller {
 		}
 		if ($this->session->userdata('filter_code_cl_phc')!='' or empty($this->session->userdata('filter_code_cl_phc'))) {
 			if ($this->session->userdata('filter_code_cl_phc')=='all' || $this->session->userdata('filter_code_cl_phc')=='') {
-				# code...
+				$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
 				$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));	
 			}
 			
+		}else{
+			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 
 		$rows_all = $this->pengadaanbarang_model->get_data();
@@ -309,11 +315,13 @@ class Pengadaanbarang extends CI_Controller {
 		}
 		if ($this->session->userdata('filter_code_cl_phc')!='' or empty($this->session->userdata('filter_code_cl_phc'))) {
 			if ($this->session->userdata('filter_code_cl_phc')=='all' || $this->session->userdata('filter_code_cl_phc')=='') {
-				# code...
+				$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
 				$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));	
 			}
 			
+		}else{
+			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->pengadaanbarang_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));
 		$data = array();
