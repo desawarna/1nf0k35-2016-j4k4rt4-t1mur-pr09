@@ -59,7 +59,7 @@
     <div class="wrapper">
     <div id="top">
       <img id="logo_pus" src="<?php echo base_url()?>public/themes/sik/dist/img/logo.gif">
-      <div id="pus_name">PUSKESMAS {puskesmas}<br>Dinas Kesehatan {district}</div>
+      <div id="pus_name">PUSKESMAS {puskesmas}<br>Suku Dinas Kesehatan {district}</div>
       <img id="logo_epus" class="hidden-xs" src="<?php echo base_url()?>public/themes/sik/dist/img/epuskesmas2.png">
     </div>
       

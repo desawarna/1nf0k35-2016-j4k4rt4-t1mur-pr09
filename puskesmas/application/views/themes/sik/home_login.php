@@ -30,8 +30,8 @@
           <tbody><tr>
             <td><img src="<?php echo base_url()?>public/themes/login/img/31.png" width="80"></td>
             <td>
-              <font style="font-family:Calibri;font-size:14pt;color:#FFFFFF;">Dinas Kesehatan<br>
-              Kabupaten {district}</font>
+              <font style="font-family:Calibri;font-size:14pt;color:#FFFFFF;">Suku Dinas Kesehatan<br>
+              {district}</font>
             </td>
           </tr>
         </tbody></table>
