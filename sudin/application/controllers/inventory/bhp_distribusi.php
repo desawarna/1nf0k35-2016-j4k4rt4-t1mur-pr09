@@ -15,12 +15,14 @@ class Bhp_distribusi extends CI_Controller {
 	}
 
 	public function export_distribusi($id = 0){
-		if($this->input->post('kode')!='' || !empty($this->input->post('kode'))){
+		$jeniskode = $this->input->post('kode');
+		if($jeniskode !='' || !empty($jeniskode)){
 			$id= $this->input->post('kode');
 		}else{
 			$id = 0;
 		}
-		if($this->input->post('jenis_bhp')!='' || !empty($this->input->post('jenis_bhp'))){
+		$jenisobat = $this->input->post('jenis_bhp');
+		if($jenisobat!='' || !empty($jenisobat)){
 			$jenis_bhp= $this->input->post('jenis_bhp');
 			if ($this->input->post('jenis_bhp')=="8") {
 				$nama_jenis = "Obat";

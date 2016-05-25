@@ -369,11 +369,12 @@ class Bhp_opname extends CI_Controller {
 		//die($this->parser->parse("inventory/bhp_opname/form",$data,true));
 	}
 	function edit_opname($id_opname=0,$jenis_bhp=0){
-
-		if ($this->input->post('idjenis')!='' || !empty($this->input->post('idjenis'))) {
+		$kodejenis = $this->input->post('idjenis');
+		if ( $kodejenis!='' || !empty($kodejenis)) {
 			$jenis_bhp=$this->input->post('idjenis');
 		}
-		if ($this->input->post('id')!='' || !empty($this->input->post('id'))) {
+		$idkode = $this->input->post('id');
+		if ($idkode!='' || !empty($idkode)) {
 			$id_opname=$this->input->post('id');
 		}
 		

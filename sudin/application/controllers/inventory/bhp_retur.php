@@ -821,10 +821,12 @@ class Bhp_retur extends CI_Controller {
 	}
 	function detail($id_opname=0,$jenis_bhp=0){
 
-		if ($this->input->post('idjenis')!='' || !empty($this->input->post('idjenis'))) {
+		$kodejenis = $this->input->post('idjenis');
+		if ($kodejenis!='' || !empty($kodejenis)) {
 			$jenis_bhp=$this->input->post('idjenis');
 		}
-		if ($this->input->post('id')!='' || !empty($this->input->post('id'))) {
+		$kodeid=$this->input->post('id');
+		if ($kodeid!='' || !empty($kodeid)) {
 			$id_opname=$this->input->post('id');
 		}
 		
