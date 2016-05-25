@@ -83,7 +83,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -149,7 +149,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -276,7 +276,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -342,7 +342,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -486,7 +486,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -552,7 +552,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -657,7 +657,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{
@@ -723,7 +723,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all'){
 
 			}else{

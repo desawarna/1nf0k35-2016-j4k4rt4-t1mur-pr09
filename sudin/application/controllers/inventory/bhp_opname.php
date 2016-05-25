@@ -70,7 +70,7 @@ class Bhp_opname extends CI_Controller {
 		}else{
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -124,7 +124,7 @@ class Bhp_opname extends CI_Controller {
 		}else{
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -244,7 +244,7 @@ class Bhp_opname extends CI_Controller {
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
 		
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -297,7 +297,7 @@ class Bhp_opname extends CI_Controller {
 		}else{
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -519,7 +519,7 @@ class Bhp_opname extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -558,7 +558,7 @@ class Bhp_opname extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -676,7 +676,7 @@ class Bhp_opname extends CI_Controller {
 			$this->db->query("set @tahun = ".'"'.$th.'"'."");
 			//$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -746,7 +746,7 @@ class Bhp_opname extends CI_Controller {
 			$this->db->query("set @tahun = ".'"'.$th.'"'."");
 			//$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -823,7 +823,7 @@ class Bhp_opname extends CI_Controller {
 			$this->db->where('inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname',$id);
 		}
 		
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{
@@ -858,7 +858,7 @@ class Bhp_opname extends CI_Controller {
 		if ($id!=0) {
 			$this->db->where('inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname',$id);
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				# code...
 			}else{

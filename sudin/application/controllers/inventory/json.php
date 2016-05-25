@@ -742,7 +742,7 @@ class Json extends CI_Controller {
 				
 			}
 		}else {
-			if(($this->session->userdata('filter_cl_phc') == 'all')||($this->session->userdata('filter_cl_phc') =='')||empty($this->session->userdata('filter_cl_phc'))){
+			if(($this->session->userdata('filter_cl_phc') == 'all')||($this->session->userdata('filter_cl_phc') =='')){
 			}else{
 				$this->db->where('id_cl_phc',$this->session->userdata('filter_cl_phc'));
 			}
@@ -788,7 +788,7 @@ class Json extends CI_Controller {
 				
 			}
 		}else {
-			if(($this->session->userdata('filter_cl_phc') == 'all')||($this->session->userdata('filter_cl_phc') =='')||empty($this->session->userdata('filter_cl_phc'))){
+			if(($this->session->userdata('filter_cl_phc') == 'all')||($this->session->userdata('filter_cl_phc') =='')){
 			}else{
 				$this->db->where('id_cl_phc',$this->session->userdata('filter_cl_phc'));
 			}

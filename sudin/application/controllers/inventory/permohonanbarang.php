@@ -76,7 +76,7 @@ class Permohonanbarang extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				$this->db->like('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
@@ -111,7 +111,7 @@ class Permohonanbarang extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				$this->db->like('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
@@ -345,7 +345,7 @@ class Permohonanbarang extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				$this->db->like('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
@@ -397,7 +397,7 @@ class Permohonanbarang extends CI_Controller {
 		}else {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',"P".$this->session->userdata('puskesmas'));
 		}*/
-		if ($this->session->userdata('filter_code_cl_phc')!='' or !empty($this->session->userdata('filter_code_cl_phc'))) {
+		if ($this->session->userdata('filter_code_cl_phc')!='') {
 			if ($this->session->userdata('filter_code_cl_phc')=='all') {
 				$this->db->like('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 			}else{
