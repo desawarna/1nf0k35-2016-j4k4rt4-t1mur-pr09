@@ -33,7 +33,8 @@ class Bhp_pengadaan_model extends CI_Model {
         if ($cek->num_rows() > 0) {
             return false;
         }else{
-            if(!empty($this->input->post('obat'))&&($this->input->post('obat')=="8")){
+            $dataobat = $this->input->post('obat');
+            if(!empty($dataobat)&&($dataobat=="8")){
                 $tgl_kadaluarsa = explode("-", $this->input->post('tgl_kadaluarsa'));
                 $batch = $this->input->post('batch');
             }else{

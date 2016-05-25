@@ -834,7 +834,8 @@ class Bhp_pengadaan extends CI_Controller {
         $this->form_validation->set_rules('subtotal', 'subtotal', 'trim');
         $this->form_validation->set_rules('id_mst_inv_barang', 'barang', 'trim');
         $this->form_validation->set_rules('jml_rusak', 'rusak', 'trim');
-        if(!empty($this->input->post('obat'))&&($this->input->post('obat')=="8")){
+        $obatdata = $this->input->post('obat');
+        if(!empty($obatdata)&&($obatdata=="8")){
         	$this->form_validation->set_rules('batch', 'Nomor Batch', 'trim|required');
         }
 		if($this->form_validation->run()== FALSE){
@@ -846,7 +847,8 @@ class Bhp_pengadaan extends CI_Controller {
 			
 			die($this->parser->parse('inventory/bhp_pengadaan/barang_form_edit', $data));
 		}else{
-			if(!empty($this->input->post('obat'))&&($this->input->post('obat')=='8')){
+			$obatdata = $this->input->post('obat');
+			if(!empty($obatdata)&&($obatdata=='8')){
 				$tgl_kadaluarsa = explode("-", $this->input->post('tgl_kadaluarsa'));
 				$batch = $this->input->post('batch');
 			}else{
