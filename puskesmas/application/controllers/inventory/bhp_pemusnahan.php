@@ -68,7 +68,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_pemusnahan_model->getallopname();
@@ -126,7 +126,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_pemusnahan_model->getallopname($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -217,7 +217,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!='')){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		
@@ -267,7 +267,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!='')){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->bhp_pemusnahan_model->get_data();
@@ -383,7 +383,7 @@ class Bhp_pemusnahan extends CI_Controller {
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
 		
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!='')){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.tipe',$tipe);
@@ -434,7 +434,7 @@ class Bhp_pemusnahan extends CI_Controller {
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
 		
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!='')){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.tipe',$tipe);
@@ -808,7 +808,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($id=='8') {
@@ -845,7 +845,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($id=='8') {
@@ -953,7 +953,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_kadaluarsa)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_pemusnahan_model->getitemopname();
@@ -1011,7 +1011,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_kadaluarsa)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_pemusnahan_model->getitemopname($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -1087,7 +1087,7 @@ class Bhp_pemusnahan extends CI_Controller {
 			$this->db->where('inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname',$id);
 		}
 		
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_pemusnahan_model->get_data_opname();
@@ -1118,7 +1118,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		if ($id!=0) {
 			$this->db->where('inv_inventaris_habispakai_opname_item.id_inv_inventaris_habispakai_opname',$id);
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_pemusnahan_model->get_data_opname($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -1213,7 +1213,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname',$id);
@@ -1241,7 +1241,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname',$id);
@@ -1312,7 +1312,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($tgl_opname!='0000-00-00' or empty($tgl_opname)) {
@@ -1342,7 +1342,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($tgl_opname!='0000-00-00' or empty($tgl_opname)) {
@@ -1410,7 +1410,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname',$id);
@@ -1438,7 +1438,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.id_inv_inventaris_habispakai_opname',$id);
@@ -1509,7 +1509,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($tgl_opname!='0000-00-00' or empty($tgl_opname)) {
@@ -1539,7 +1539,7 @@ class Bhp_pemusnahan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($tgl_opname!='0000-00-00' or empty($tgl_opname)) {
@@ -2282,7 +2282,7 @@ class Bhp_pemusnahan extends CI_Controller {
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
 		
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!=''){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.tipe',$tipe);
@@ -2333,7 +2333,7 @@ class Bhp_pemusnahan extends CI_Controller {
 			//$this->db->where("mst_inv_barang_habispakai.id_mst_inv_barang_habispakai_jenis",$kode);
 		}
 		
-		if(($this->session->userdata('puskesmas')!='')and !empty($this->session->userdata('puskesmas'))){
+		if(($this->session->userdata('puskesmas')!=''){
 			$this->db->where("code_cl_phc",'P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_opname.tipe',$tipe);
@@ -2454,7 +2454,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_kadaluarsa)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_pemusnahan_model->getitemopname();
@@ -2512,7 +2512,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_kadaluarsa)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_pemusnahan_model->getitemopname();
@@ -2633,7 +2633,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_pemusnahan_model->getallopname();
@@ -2691,7 +2691,7 @@ class Bhp_pemusnahan extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_pemusnahan_model->getallopname();

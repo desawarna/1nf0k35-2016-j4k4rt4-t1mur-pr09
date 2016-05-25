@@ -43,7 +43,7 @@ class Inv_ruangan extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('mst_inv_ruangan.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all = $this->inv_ruangan_model->get_data();
@@ -68,7 +68,7 @@ class Inv_ruangan extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('mst_inv_ruangan.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->inv_ruangan_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));

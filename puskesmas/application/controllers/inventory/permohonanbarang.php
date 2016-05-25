@@ -76,7 +76,7 @@ class Permohonanbarang extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all = $this->permohonanbarang_model->get_data();
@@ -105,7 +105,7 @@ class Permohonanbarang extends CI_Controller {
 		/*if($this->session->userdata('filter_code_cl_phc') != '') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',$this->session->userdata('filter_code_cl_phc'));
 		}*/
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		#$rows = $this->permohonanbarang_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -333,7 +333,7 @@ class Permohonanbarang extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		/*$kodepuskesmas = $this->session->userdata('puskesmas');
@@ -379,7 +379,7 @@ class Permohonanbarang extends CI_Controller {
 		}else {
 			$this->db->where('inv_permohonan_barang.code_cl_phc',"P".$this->session->userdata('puskesmas'));
 		}*/
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_permohonan_barang.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->permohonanbarang_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));

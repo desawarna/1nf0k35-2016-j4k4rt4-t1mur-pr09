@@ -76,7 +76,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_retur_model->getitemopname_retur();
@@ -138,7 +138,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_retur_model->getitemopname_retur();
@@ -261,7 +261,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_retur_model->getitemopname();
@@ -323,7 +323,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_retur_model->getitemopname();
@@ -463,7 +463,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' or) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_retur_model->getitemopname();
@@ -525,7 +525,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_pembelian_terakhir)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_retur_model->getitemopname($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -626,7 +626,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or !empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows_all_activity = $this->bhp_retur_model->getitemopname_retur();
@@ -688,7 +688,7 @@ class Bhp_retur extends CI_Controller {
 		}else{
 			$this->db->where("YEAR(tgl_opname)",date("Y"));
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$activity = $this->bhp_retur_model->getitemopname_retur($this->input->post('recordstartindex'), $this->input->post('pagesize'));

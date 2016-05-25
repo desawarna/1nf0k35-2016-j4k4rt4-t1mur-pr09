@@ -39,7 +39,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 
@@ -66,7 +66,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->bhp_pengadaan_model->get_data();
@@ -175,7 +175,7 @@ class Bhp_pengadaan extends CI_Controller {
 		}
 		
 		
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_inventaris_habispakai_pembelian_item.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_pembelian_item.id_inv_hasbispakai_pembelian',$id);
@@ -360,7 +360,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 
@@ -387,7 +387,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->bhp_pengadaan_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -460,7 +460,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_inventaris_habispakai_pembelian_item.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_pembelian_item.id_inv_hasbispakai_pembelian',$id);
@@ -488,7 +488,7 @@ class Bhp_pengadaan extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('inv_inventaris_habispakai_pembelian_item.code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$this->db->where('inv_inventaris_habispakai_pembelian_item.id_inv_hasbispakai_pembelian',$id);

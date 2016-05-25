@@ -36,7 +36,7 @@ class Bhp_kondisi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='' ) {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if($this->session->userdata('filter_jenisbarang')!=''){
@@ -70,7 +70,7 @@ class Bhp_kondisi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if($this->session->userdata('filter_jenisbarang')!=''){
@@ -146,7 +146,7 @@ class Bhp_kondisi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if($this->session->userdata('filter_jenisbarang')!=''){
@@ -180,7 +180,7 @@ class Bhp_kondisi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if($this->session->userdata('filter_jenisbarang')!=''){

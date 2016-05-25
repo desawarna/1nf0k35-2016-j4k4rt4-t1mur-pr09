@@ -179,7 +179,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 
@@ -206,7 +206,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->bhp_distribusi_model->get_data();
@@ -288,7 +288,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 
@@ -315,7 +315,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		$rows = $this->bhp_distribusi_model->get_data($this->input->post('recordstartindex'), $this->input->post('pagesize'));
@@ -382,7 +382,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($id=='8') {
@@ -415,7 +415,7 @@ class Bhp_distribusi extends CI_Controller {
 				$this->db->order_by($ord, $this->input->post('sortorder'));
 			}
 		}
-		if ($this->session->userdata('puskesmas')!='' or empty($this->session->userdata('puskesmas'))) {
+		if ($this->session->userdata('puskesmas')!='') {
 			$this->db->where('code_cl_phc','P'.$this->session->userdata('puskesmas'));
 		}
 		if ($id=='8') {
