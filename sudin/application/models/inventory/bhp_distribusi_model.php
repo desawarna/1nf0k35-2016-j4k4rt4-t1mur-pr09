@@ -241,7 +241,8 @@ class Bhp_distribusi_model extends CI_Model {
         return  $kode_pengadaan.$urut;
     }
     function nourut($kode_pengadaan){
-        $q = $this->db->query("select MAX(RIGHT(id_inv_inventaris_habispakai_distribusi,6)) as kd_max from inv_inventaris_habispakai_distribusi where (LEFT(id_inv_inventaris_habispakai_distribusi,15))=$kode_pengadaan");
+        $jmldata = strlen($kode_pengadaan);
+        $q = $this->db->query("select MAX(RIGHT(id_inv_inventaris_habispakai_distribusi,6)) as kd_max from inv_inventaris_habispakai_distribusi where (LEFT(id_inv_inventaris_habispakai_distribusi,$jmldata))=$kode_pengadaan");
         $nourut="";
         if($q->num_rows()>0)
         {

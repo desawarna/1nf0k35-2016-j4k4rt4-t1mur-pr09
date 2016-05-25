@@ -796,7 +796,8 @@ class Bhp_pengadaan extends CI_Controller {
         $this->form_validation->set_rules('jqxinput', 'Nama Barang', 'trim');
         $this->form_validation->set_rules('subtotal', 'subtotal', 'trim');
         $this->form_validation->set_rules('id_mst_inv_barang', 'barang', 'trim');
-        if(!empty($this->input->post('obat'))&&($this->input->post('obat')=="8")){
+        $obatdata = $this->input->post('obat');
+        if(!empty($obatdata)&&($obatdata=="8")){
         	$this->form_validation->set_rules('batch', 'Nomor Batch', 'trim|required');
         }
 

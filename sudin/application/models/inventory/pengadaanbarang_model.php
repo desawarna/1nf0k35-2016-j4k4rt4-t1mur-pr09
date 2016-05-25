@@ -272,7 +272,8 @@ WHERE inv_inventaris_barang.barang_kembar_proc = (SELECT barang_kembar_proc FROM
         return  $kode_pengadaan.$urut;
     }
     function nourut($kode_pengadaan){
-        $q = $this->db->query("select MAX(RIGHT(id_pengadaan,6)) as kd_max from inv_pengadaan where (LEFT(id_pengadaan,15))=$kode_pengadaan");
+        $jmldata = strlen($kode_pengadaan);
+        $q = $this->db->query("select MAX(RIGHT(id_pengadaan,6)) as kd_max from inv_pengadaan where (LEFT(id_pengadaan,$jmldata))=$kode_pengadaan");
         $nourut="";
         if($q->num_rows()>0)
         {
